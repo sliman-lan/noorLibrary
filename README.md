@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # E-Library Backend API
 
 ## Overview
@@ -114,3 +115,7 @@ For further questions or feedback, please send an email to:
 
 ---
 This README provides an overview and guide for setting up and using the E-Library Backend API. It’s designed to help developers quickly understand and contribute to the project.
+=======
+# noorLibrary
+an API for Flutter Library Application
+>>>>>>> 2497f4aaa57386a8a14a1d9f01fe542fd77d51f9

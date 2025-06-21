@@ -3,19 +3,24 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
+// استخدم أسماء المتغيرات التي يقدمها Railway تلقائيًا
 const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+  host: process.env.MYSQLHOST || 'localhost', // القيمة الافتراضية للتطوير المحلي
+  user: process.env.MYSQLUSER || 'root',
+  password: process.env.MYSQLPASSWORD || '',
+  database: process.env.MYSQLDATABASE || 'test',
+  port: process.env.MYSQLPORT || 3306, // البورت الافتراضي لـ MySQL
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
 db.connect((err) => {
-    if (err) {
-        console.error('Database connection failed:', err.stack);
-        return;
-    }
-    console.log('Connected to database.');
+  if (err) {
+    console.error('Database connection failed:', err.stack);
+    return;
+  }
+  console.log('Connected to database.');
 });
 
 module.exports = db;

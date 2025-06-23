@@ -6,7 +6,7 @@ const User = {
         db.query(sql, [username, password, fname, lname], callback);
     },
     findByUsername: (username, callback) => {
-        const sql = 'SELECT * FROM User WHERE username = ?';
+        const sql = 'SELECT * FROM user WHERE username = ?';
         db.query(sql, [username], (err, results) => {
             if (err) return callback(err);
             

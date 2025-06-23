@@ -3,25 +3,21 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-// Using a connection pool for better handling of multiple simultaneous requests.
-const pool = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+const db = mysql.createConnection({
+    host: process.env.MYSQLHOST,
+    port: process.env.MYSQLPORT,
+    user: process.env.MYSQLUSER,
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQL_DATABASE,
+    ssl: { rejectUnauthorized: false }  // إذا كانت خدمة Railway تتطلب SSL
 });
 
-// Optional: Test the pool by acquiring a connection.
-pool.getConnection((err, connection) => {
+db.connect((err) => {
     if (err) {
-        console.error('Database connection failed:', err.stack);
+        console.error('فشل الاتصال بقاعدة البيانات:', err.stack);
         return;
     }
-    console.log('Connected to database through pool.');
-    connection.release();  // Release the connection back to the pool.
+    console.log('تم الاتصال بقاعدة البيانات.');
 });
 
-module.exports = pool;
+module.exports = db;

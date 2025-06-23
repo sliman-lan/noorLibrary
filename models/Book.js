@@ -23,8 +23,8 @@ const Book = {
         author.Lname AS AuthorLastName,
         publisher.pname AS PublisherName
       FROM book
-      JOIN author ON book.AuthorId = Author.Id
-      JOIN publisher ON book.pubId = Publisher.Id
+      JOIN author ON book.AuthorId = author.Id
+      JOIN publisher ON book.pubId = publisher.Id
     `;
     db.query(sql, callback);
   },
@@ -42,8 +42,8 @@ const Book = {
         author.Lname AS AuthorLastName,
         publisher.pname AS PublisherName
       FROM book
-      JOIN author ON book.AuthorId = Author.Id
-      JOIN publisher ON book.pubId = Publisher.Id
+      JOIN author ON book.AuthorId = author.Id
+      JOIN publisher ON book.pubId = publisher.Id
       WHERE book.Title LIKE ?
     `;
     db.query(sql, [`%${titlePart}%`], callback);
@@ -62,8 +62,8 @@ const Book = {
         author.Lname AS AuthorLastName,
         publisher.pname AS PublisherName
       FROM book
-      JOIN author ON book.AuthorId = Author.Id
-      JOIN publisher ON book.pubId = Publisher.Id
+      JOIN author ON book.AuthorId = author.Id
+      JOIN publisher ON book.pubId = publisher.Id
       WHERE book.Title = ?
       LIMIT 1
     `;

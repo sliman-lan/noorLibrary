@@ -21,7 +21,7 @@ const Book = {
         book.Link,
         author.Fname AS AuthorFirstName,
         author.Lname AS AuthorLastName,
-        Publisher.pname AS PublisherName
+        publisher.pname AS PublisherName
       FROM book
       JOIN author ON book.AuthorId = Author.Id
       JOIN publisher ON book.pubId = Publisher.Id
